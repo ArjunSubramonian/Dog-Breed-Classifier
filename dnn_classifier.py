@@ -86,7 +86,7 @@ fname = "image.jpg"
 preprocess(fname)
 
 num_px = 128
-L = 5
+L = 4
 
 # Reshape image into single column vector.
 image = np.array(ndimage.imread(fname, flatten = False))

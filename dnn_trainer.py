@@ -137,8 +137,8 @@ num_px = 128
 # n_y = 1
 # layers_dims = (n_x, n_h, n_y)
 
-L = 5
-layers_dims = [num_px * num_px * 3, 40, 14, 10, 2, 1] #  L-layer model
+L = 4
+layers_dims = [num_px * num_px * 3, 20, 7, 5, 1] #  L-layer model
 
 '''Make a dictionary with the breeds as keys.'''
 breeds = {}
@@ -171,7 +171,7 @@ for breed in breeds:
         else:
             X_other = np.loadtxt('./data/' + other + '_X.txt', usecols = use)
 
-            # Make first three images in each other class negative training data for current breed.
+            # Make first n images in each other class negative training data for current breed.
             X[:, col:(col + append)] = X_other
 
             col += append
@@ -188,7 +188,7 @@ for breed in breeds:
     # W2 = parameters["W2"]
     # b2 = parameters["b2"]
 
-    parameters = L_layer_model(X, Y, layers_dims, learning_rate = 0.01, num_iterations = 2500, print_cost = True)
+    parameters = L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 2500, print_cost = True)
     for l in range(1, L + 1):
         w = parameters["W" + str(l)]
         b = parameters["b" + str(l)]
