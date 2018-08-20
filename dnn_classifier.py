@@ -107,11 +107,11 @@ with open('test.txt') as file:
             except:
                 parameters["b" + str(l)] = np.reshape(b, (1, 1))
         
-        mini = np.loadtxt('./trained_values/' + breed + '_mini.txt')
-        maxi = np.loadtxt('./trained_values/' + breed + '_maxi.txt')
+        # mini = np.loadtxt('./trained_values/' + breed + '_mini.txt')
+        # maxi = np.loadtxt('./trained_values/' + breed + '_maxi.txt')
 
-        # Scale RGB values to [0, 1] using mini and maxi.
-        img = (my_image - mini) / (maxi - mini)
+        # Scale RGB values to approximately [0, 1].
+        img = my_image / 255
 
         pred = np.squeeze(predict(img, parameters))
 

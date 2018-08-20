@@ -176,10 +176,8 @@ for breed in breeds:
 
             col += append
 
-    # Scale RGB values to [0, 1] using mini and maxi.
-    mini = np.amin(X)
-    maxi = np.amax(X)
-    X = (X - mini) / (maxi - mini)
+    # Scale RGB values to approximately [0, 1].
+    X /= 255
 
     # parameters = two_layer_model(X, Y, layers_dims = (n_x, n_h, n_y), num_iterations = 2500, print_cost=True)
     # Retrieve W1, b1, W2, b2 from parameters
@@ -188,7 +186,7 @@ for breed in breeds:
     # W2 = parameters["W2"]
     # b2 = parameters["b2"]
 
-    parameters = L_layer_model(X, Y, layers_dims, learning_rate = 0.0075, num_iterations = 2500, print_cost = True)
+    parameters = L_layer_model(X, Y, layers_dims, learning_rate = 0.005, num_iterations = 2500, print_cost = True)
     for l in range(1, L + 1):
         w = parameters["W" + str(l)]
         b = parameters["b" + str(l)]
@@ -196,7 +194,7 @@ for breed in breeds:
         np.savetxt('./trained_values/' + breed + '_W' + str(l) + '.txt', w)
         np.savetxt('./trained_values/' + breed + '_b' + str(l) + '.txt', b)
    
-    with open('./trained_values/' + breed + '_mini.txt', 'w') as f:
-        f.write(str(mini))
-    with open('./trained_values/' + breed + '_maxi.txt', 'w') as f:
-        f.write(str(maxi))
+    # with open('./trained_values/' + breed + '_mini.txt', 'w') as f:
+    #     f.write(str(mini))
+    # with open('./trained_values/' + breed + '_maxi.txt', 'w') as f:
+    #     f.write(str(maxi))
