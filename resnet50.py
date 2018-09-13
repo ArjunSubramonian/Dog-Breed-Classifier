@@ -2,6 +2,7 @@
     # - Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun - [Deep Residual Learning for Image Recognition (2015)](https://arxiv.org/abs/1512.03385)
     # - Francois Chollet's github repository: https://github.com/fchollet/deep-learning-models/blob/master/resnet50.py
 # Uses Keras.
+# Uses weights pretrained on ImageNet.
 
 import numpy as np
 from keras import layers
@@ -15,6 +16,7 @@ from keras.utils.vis_utils import model_to_dot
 from keras.utils import plot_model
 from resnets_utils import *
 from keras.initializers import glorot_uniform
+from keras.callbacks import ModelCheckpoint
 
 import keras.backend as K
 K.set_image_data_format('channels_last')
@@ -196,7 +198,7 @@ def convolutional_block(X, f, filters, stage, block, s = 2):
 
 
 ### EDIT ###
-def ResNet50(input_shape = (128, 128, 3), classes = 120):
+def ResNet50(input_shape = (num_px, num_px, 3), classes = num_breeds):
     """
     Implementation of the popular ResNet50 the following architecture:
     CONV2D -> BATCHNORM -> RELU -> MAXPOOL -> CONVBLOCK -> IDBLOCK*2 -> CONVBLOCK -> IDBLOCK*3
@@ -255,6 +257,11 @@ def ResNet50(input_shape = (128, 128, 3), classes = 120):
     
     model = Model(inputs = X_input, outputs = X, name='ResNet50')
 
+    # WEIGHTS_PATH_NO_TOP = 'https://github.com/fchollet/deep-learning-models/releases/download/v0.2/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
+    # weights_path = get_file('resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5', WEIGHTS_PATH_NO_TOP, cache_subdir='models', md5_hash='a268eb855778b3df3c7506639542a6af')
+    # model.load_weights(weights_path, by_name=True)
+    model.load_weights('weights-improvement-01-0.00.h5')
+
     return model
 
 ### TRAIN THE MODEL ###
@@ -272,7 +279,11 @@ X_train = train_set_x_orig / 255
 # Convert training labels to one hot matrices
 Y_train = convert_to_one_hot(train_set_y_orig, num_breeds).T
 
-model.fit(X_train, Y_train, epochs = 50, batch_size = 128)
+# Checkpoint model
+filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.h5"
+checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+callbacks_list = [checkpoint]
+model.fit(X_train, Y_train, epochs = 50, batch_size = 64, callbacks=callbacks_list, validation_split=0.1)
 
 # Save model
 model.save('my_model.h5')

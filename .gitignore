@@ -6,6 +6,7 @@
 !*.py
 !README.md
 !image.jpg
+!breeds.txt
 # etc...
 
 # ...even if they are in subdirectories
