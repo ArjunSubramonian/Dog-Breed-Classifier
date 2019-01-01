@@ -9,6 +9,7 @@ that, given an image of a dog, can determine the dog’s breed. The ResNet50 was
 
 # Data prep
 Download the [Stanford Dogs Dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) here.\
+\
 Run:\
 `python ./Data\ Python\ Scripts/dataset_prep.py`\
 `python ./Data\ Python\ Scripts/data_prep.py`
