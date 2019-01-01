@@ -194,16 +194,16 @@ num_px = 128
 
 '''Make a dictionary with the breeds as keys.'''
 breeds = {}
-with open('breeds.txt') as file:
+with open('../Classes/breeds.txt') as file:
     for line in file:
         breeds[line.strip()] = []
 
 for breed in breeds:
     print(breed)
 
-    X = np.loadtxt('./data/' + breed + '_X.txt')
+    X = np.loadtxt('../data/' + breed + '_X.txt')
     # CAUTION - this returns a rank one array, not a row vector
-    Y = np.loadtxt('./data/' + breed + '_Y.txt')
+    Y = np.loadtxt('../data/' + breed + '_Y.txt')
 
     col = Y.shape[0]
 
@@ -214,7 +214,7 @@ for breed in breeds:
         if other == breed:
             continue
         else:
-            X_other = np.loadtxt('./data/' + other + '_X.txt', usecols = (0, 1, 2))
+            X_other = np.loadtxt('../data/' + other + '_X.txt', usecols = (0, 1, 2))
 
             # Make first three images in each other class negative training data for current breed.
             X[:, col:(col + 3)] = X_other
@@ -240,10 +240,10 @@ for breed in breeds:
     w = parameters["w"]
     b = parameters["b"]
 
-    np.savetxt('./trained_values/' + breed + '_w.txt', w)
-    with open('./trained_values/' + breed + '_b.txt', 'w') as f:
+    np.savetxt('../trained_values/' + breed + '_w.txt', w)
+    with open('../trained_values/' + breed + '_b.txt', 'w') as f:
         f.write(str(b))
-    with open('./trained_values/' + breed + '_mini.txt', 'w') as f:
+    with open('../trained_values/' + breed + '_mini.txt', 'w') as f:
         f.write(str(mini))
-    with open('./trained_values/' + breed + '_maxi.txt', 'w') as f:
+    with open('../trained_values/' + breed + '_maxi.txt', 'w') as f:
         f.write(str(maxi))

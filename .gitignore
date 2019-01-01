@@ -3,10 +3,24 @@
 
 # But not these files...
 !.gitignore
-!*.py
 !README.md
 !image.jpg
-!breeds.txt
+
+!Classes/
+!Classes/breeds.txt
+
+!Data\ Python\ Scripts/
+!Data\ Python\ Scripts/*.py
+
+!Deep\ FC\ NN\ Python\ Scripts/
+!Deep\ FC\ NN\ Python\ Scripts/*.py
+
+!Logistic\ Regression\ Python\ Scripts/
+!Logistic\ Regression\ Python\ Scripts/*.py
+
+!ResNet50\ Python\ Scripts/
+!ResNet50\ Python\ Scripts/*.py
+
 # etc...
 
 # ...even if they are in subdirectories

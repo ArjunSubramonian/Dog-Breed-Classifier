@@ -142,16 +142,16 @@ layers_dims = [num_px * num_px * 3, 20, 7, 5, 1] #  L-layer model
 
 '''Make a dictionary with the breeds as keys.'''
 breeds = {}
-with open('test.txt') as file:
+with open('../Classes/breeds.txt') as file:
     for line in file:
         breeds[line.strip()] = []
 
 for breed in breeds:
     print(breed)
 
-    X = np.loadtxt('./data/' + breed + '_X.txt')
+    X = np.loadtxt('../data/' + breed + '_X.txt')
     # CAUTION - this returns a rank one array, not a row vector
-    Y = np.loadtxt('./data/' + breed + '_Y.txt')
+    Y = np.loadtxt('../data/' + breed + '_Y.txt')
 
     col = Y.shape[0]
 
@@ -169,7 +169,7 @@ for breed in breeds:
         if other == breed:
             continue
         else:
-            X_other = np.loadtxt('./data/' + other + '_X.txt', usecols = use)
+            X_other = np.loadtxt('../data/' + other + '_X.txt', usecols = use)
 
             # Make first n images in each other class negative training data for current breed.
             X[:, col:(col + append)] = X_other
@@ -191,10 +191,10 @@ for breed in breeds:
         w = parameters["W" + str(l)]
         b = parameters["b" + str(l)]
 
-        np.savetxt('./trained_values/' + breed + '_W' + str(l) + '.txt', w)
-        np.savetxt('./trained_values/' + breed + '_b' + str(l) + '.txt', b)
+        np.savetxt('../trained_values/' + breed + '_W' + str(l) + '.txt', w)
+        np.savetxt('../trained_values/' + breed + '_b' + str(l) + '.txt', b)
    
-    # with open('./trained_values/' + breed + '_mini.txt', 'w') as f:
+    # with open('../trained_values/' + breed + '_mini.txt', 'w') as f:
     #     f.write(str(mini))
-    # with open('./trained_values/' + breed + '_maxi.txt', 'w') as f:
+    # with open('../trained_values/' + breed + '_maxi.txt', 'w') as f:
     #     f.write(str(maxi))

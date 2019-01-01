@@ -82,7 +82,7 @@ def preprocess(fname):
         return -1
 
 # Change fname to test image name.
-fname = "image.jpg"
+fname = "../image.jpg"
 preprocess(fname)
 
 num_px = 128
@@ -94,21 +94,21 @@ my_image = image.reshape((1, num_px * num_px * 3)).T
 
 '''Make a dictionary with the breeds as keys.'''
 breeds = {}
-with open('test.txt') as file:
+with open('../Classes/breeds.txt') as file:
     for line in file:
         breed = line.strip()
 
         parameters = {}
         for l in range(1, L + 1):
-            parameters["W" + str(l)] = np.loadtxt('./trained_values/' + breed + '_W' + str(l) + '.txt')
-            b = np.loadtxt('./trained_values/' + breed + '_b' + str(l) + '.txt')
+            parameters["W" + str(l)] = np.loadtxt('../trained_values/' + breed + '_W' + str(l) + '.txt')
+            b = np.loadtxt('../trained_values/' + breed + '_b' + str(l) + '.txt')
             try:
                 parameters["b" + str(l)] = np.reshape(b, (b.shape[0], 1))
             except:
                 parameters["b" + str(l)] = np.reshape(b, (1, 1))
         
-        # mini = np.loadtxt('./trained_values/' + breed + '_mini.txt')
-        # maxi = np.loadtxt('./trained_values/' + breed + '_maxi.txt')
+        # mini = np.loadtxt('../trained_values/' + breed + '_mini.txt')
+        # maxi = np.loadtxt('../trained_values/' + breed + '_maxi.txt')
 
         # Scale RGB values to approximately [0, 1].
         img = my_image / 255

@@ -36,7 +36,7 @@ print()
 print()
 
 # Change fname to test image name.
-fname = "image.jpg"
+fname = "../image.jpg"
 num_px = 128
 
 # Reshape image into single column vector.
@@ -46,14 +46,14 @@ my_image = image.reshape((1, num_px * num_px * 3)).T
 
 '''Make a dictionary with the breeds as keys.'''
 breeds = {}
-with open('breeds.txt') as file:
+with open('../Classes/breeds.txt') as file:
     for line in file:
         breed = line.strip()
 
-        w = np.loadtxt('./trained_values/' + breed + '_w.txt')
-        b = np.loadtxt('./trained_values/' + breed + '_b.txt')
-        mini = np.loadtxt('./trained_values/' + breed + '_mini.txt')
-        maxi = np.loadtxt('./trained_values/' + breed + '_maxi.txt')
+        w = np.loadtxt('../trained_values/' + breed + '_w.txt')
+        b = np.loadtxt('../trained_values/' + breed + '_b.txt')
+        mini = np.loadtxt('../trained_values/' + breed + '_mini.txt')
+        maxi = np.loadtxt('../trained_values/' + breed + '_maxi.txt')
 
         # Scale RGB values to [0, 1] using mini and maxi.
         img = (my_image - mini) / (maxi - mini)

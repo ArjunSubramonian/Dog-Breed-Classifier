@@ -23,12 +23,12 @@ breeds = {}
 breed_num = 0
 
 '''Iterate through breeds.'''
-with open('breeds.txt') as file:
+with open('../Classes/breeds.txt') as file:
     for line in file:
         breeds[breed_num] = line.strip()
         breed_num += 1
 
-img_path = 'image.jpg'
+img_path = '../image.jpg'
 img = image.load_img(img_path, target_size=(num_px, num_px))
 x = image.img_to_array(img)
 x = np.expand_dims(x, axis=0)

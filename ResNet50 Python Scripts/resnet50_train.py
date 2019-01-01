@@ -260,7 +260,7 @@ def ResNet50(input_shape = (num_px, num_px, 3), classes = num_breeds):
     # WEIGHTS_PATH_NO_TOP = 'https://github.com/fchollet/deep-learning-models/releases/download/v0.2/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
     # weights_path = get_file('resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5', WEIGHTS_PATH_NO_TOP, cache_subdir='models', md5_hash='a268eb855778b3df3c7506639542a6af')
     # model.load_weights(weights_path, by_name=True)
-    model.load_weights('weights-improvement-01-0.00.h5')
+    model.load_weights('../old_models/weights-improvement-01-0.00.h5')
 
     return model
 
@@ -280,7 +280,7 @@ X_train = train_set_x_orig / 255
 Y_train = convert_to_one_hot(train_set_y_orig, num_breeds).T
 
 # Checkpoint model
-filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.h5"
+filepath="../old_models/weights-improvement-{epoch:02d}-{val_acc:.2f}.h5"
 checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
 model.fit(X_train, Y_train, epochs = 50, batch_size = 64, callbacks=callbacks_list, validation_split=0.1)

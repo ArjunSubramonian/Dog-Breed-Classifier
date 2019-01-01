@@ -10,7 +10,7 @@ import os
 import re
 
 '''Rename folders in Stanford Dogs Dataset.'''
-rootdir = './Stanford_Dogs_Dataset/'
+rootdir = '../Stanford_Dogs_Dataset/'
 
 for subdir, dirs, files in os.walk(rootdir):
     try:
@@ -77,6 +77,6 @@ for subdir, dirs, files in os.walk(rootdir):
             continue
 
 output = '\n'.join(breeds)
-with open('breeds.txt', 'w') as f:
+with open('../Classes/breeds.txt', 'w') as f:
     f.write(output)
 

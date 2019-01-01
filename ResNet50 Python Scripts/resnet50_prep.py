@@ -32,15 +32,15 @@ Y_train = []
 breed_num = 0
 
 '''Iterate through breeds.'''
-with open('breeds.txt') as file:
+with open('../Classes/breeds.txt') as file:
     for line in file:
         # Extract breed
         breed = line.strip()
         print(breed, breed_num)
 
-        for file in os.listdir('./Stanford_Dogs_Dataset/' + breed + '/'):
+        for file in os.listdir('../Stanford_Dogs_Dataset/' + breed + '/'):
             try:
-                img_path = './Stanford_Dogs_Dataset/' + breed + '/' + file
+                img_path = '../Stanford_Dogs_Dataset/' + breed + '/' + file
                 img = image.load_img(img_path, target_size=(num_px, num_px))
                 x = image.img_to_array(img)
                 x = np.expand_dims(x, axis=0)
