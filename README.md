@@ -8,7 +8,7 @@ Python and Keras implementations of 3 different deep learning classifiers:
 that, given an image of a dog, can determine the dog’s breed. The ResNet50 was initialized during training with pre-trained ImageNet weights and only trained partially due to a lack of computational power.
 
 # Data prep
-Download the [Stanford Dogs Dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/) here.\
+Download the [Stanford Dogs Dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/).\
 \
 Run:\
 `python ./Data\ Python\ Scripts/dataset_prep.py`\
